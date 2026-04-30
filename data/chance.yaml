@@ -1,0 +1,93 @@
+# Chance deck — Post-2008 US Standard Edition (16 cards)
+#
+# Card kinds (full taxonomy, only movement-affecting ones matter for Stage 1):
+#   move_absolute   — go to a specific square index
+#   move_relative   — offset by N spaces (negative = backwards)
+#   move_nearest    — advance to nearest railroad or utility
+#   go_to_jail      — go directly to jail
+#   get_out_of_jail — keepable/tradeable; treated as no-op in Stage 1
+#   collect_from_bank / pay_to_bank / collect_from_each_player /
+#   pay_each_player / pay_per_building — financial; no-op in Stage 1
+cards:
+  - id: chance_advance_boardwalk
+    text: "Advance to Boardwalk."
+    kind: move_absolute
+    square: 39
+
+  - id: chance_advance_go
+    text: "Advance to Go (Collect $200)."
+    kind: move_absolute
+    square: 0
+
+  - id: chance_advance_illinois
+    text: "Advance to Illinois Avenue. If you pass Go, collect $200."
+    kind: move_absolute
+    square: 24
+
+  - id: chance_advance_st_charles
+    text: "Advance to St. Charles Place. If you pass Go, collect $200."
+    kind: move_absolute
+    square: 11
+
+  # Two copies of this card exist in the deck.
+  - id: chance_nearest_railroad_1
+    text: "Advance token to the nearest Railroad. If unowned, you may buy it. If owned, pay owner twice the rental."
+    kind: move_nearest
+    target_type: railroad
+    double_rent: true
+
+  - id: chance_nearest_railroad_2
+    text: "Advance token to the nearest Railroad. If unowned, you may buy it. If owned, pay owner twice the rental."
+    kind: move_nearest
+    target_type: railroad
+    double_rent: true
+
+  - id: chance_nearest_utility
+    text: "Advance token to the nearest Utility. If unowned, you may buy it. If owned, throw dice and pay owner ten times the amount thrown."
+    kind: move_nearest
+    target_type: utility
+    ten_times_dice: true
+
+  - id: chance_bank_dividend
+    text: "Bank pays you a dividend of $50."
+    kind: collect_from_bank
+    amount: 50
+
+  - id: chance_gojf
+    text: "Get Out of Jail Free. This card may be kept until needed or traded."
+    kind: get_out_of_jail
+
+  - id: chance_back_3
+    text: "Go Back 3 Spaces."
+    kind: move_relative
+    offset: -3
+
+  - id: chance_go_to_jail
+    text: "Go to Jail. Go directly to Jail, do not pass Go, do not collect $200."
+    kind: go_to_jail
+
+  - id: chance_general_repairs
+    text: "Make general repairs on all your property. For each house pay $25. For each hotel $100."
+    kind: pay_per_building
+    house_cost: 25
+    hotel_cost: 100
+
+  - id: chance_speeding_fine
+    text: "Speeding fine $15."
+    kind: pay_to_bank
+    amount: 15
+
+  - id: chance_reading_railroad
+    text: "Take a trip to Reading Railroad. If you pass Go, collect $200."
+    kind: move_absolute
+    square: 5
+
+  - id: chance_chairman
+    text: "You have been elected Chairman of the Board. Pay each player $50."
+    kind: pay_each_player
+    amount: 50
+
+  - id: chance_building_loan
+    text: "Your building loan matures. Collect $150."
+    kind: collect_from_bank
+    amount: 150

@@ -1,0 +1,83 @@
+# Community Chest deck — Post-2008 US Standard Edition (16 cards)
+#
+# Only move_absolute, go_to_jail, and get_out_of_jail affect movement.
+# All financial kinds are no-ops in Stage 1.
+cards:
+  - id: cc_advance_go
+    text: "Advance to Go (Collect $200)."
+    kind: move_absolute
+    square: 0
+
+  - id: cc_bank_error
+    text: "Bank error in your favor. Collect $200."
+    kind: collect_from_bank
+    amount: 200
+
+  - id: cc_doctors_fee
+    text: "Doctor's fee. Pay $50."
+    kind: pay_to_bank
+    amount: 50
+
+  - id: cc_stock_sale
+    text: "From sale of stock you get $50."
+    kind: collect_from_bank
+    amount: 50
+
+  - id: cc_gojf
+    text: "Get Out of Jail Free. This card may be kept until needed or traded."
+    kind: get_out_of_jail
+
+  - id: cc_go_to_jail
+    text: "Go to Jail. Go directly to Jail, do not pass Go, do not collect $200."
+    kind: go_to_jail
+
+  - id: cc_grand_opera
+    text: "Grand Opera Night. Collect $50 from every player."
+    kind: collect_from_each_player
+    amount: 50
+
+  - id: cc_holiday_fund
+    text: "Holiday Fund matures. Receive $100."
+    kind: collect_from_bank
+    amount: 100
+
+  - id: cc_income_tax_refund
+    text: "Income tax refund. Collect $20."
+    kind: collect_from_bank
+    amount: 20
+
+  - id: cc_birthday
+    text: "It is your birthday. Collect $10 from every player."
+    kind: collect_from_each_player
+    amount: 10
+
+  - id: cc_life_insurance
+    text: "Life insurance matures. Collect $100."
+    kind: collect_from_bank
+    amount: 100
+
+  - id: cc_hospital_fees
+    text: "Pay hospital fees of $100."
+    kind: pay_to_bank
+    amount: 100
+
+  - id: cc_school_fees
+    text: "Pay school fees of $150."
+    kind: pay_to_bank
+    amount: 150
+
+  - id: cc_consultancy_fee
+    text: "Receive $25 consultancy fee."
+    kind: collect_from_bank
+    amount: 25
+
+  - id: cc_street_repairs
+    text: "You are assessed for street repairs. $40 per house. $115 per hotel."
+    kind: pay_per_building
+    house_cost: 40
+    hotel_cost: 115
+
+  - id: cc_beauty_contest
+    text: "You have won second prize in a beauty contest. Collect $10."
+    kind: collect_from_bank
+    amount: 10
