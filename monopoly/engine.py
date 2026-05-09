@@ -530,7 +530,7 @@ class GameEngine:
                     self._push_buy_decision(pi, sq_idx)
                     return True
                 if prop.owner != pi and not prop.is_mortgaged:
-                    rent = self._calculate_rent(sq_idx, dice_total, via_card)
+                    rent = self._calculate_rent(sq_idx, dice_total, via_card, lander=pi)
                     self._log(RentPaid(payer=pi, owner=prop.owner, amount=rent, square=sq_idx))
                     self._charge(pi, rent, f"rent_{sq_idx}", creditor=prop.owner)
                 return False
@@ -756,7 +756,8 @@ class GameEngine:
         player.gojf_cards.clear()
         player.money = 0
 
-    def _calculate_rent(self, sq_idx: int, dice_total: int, via_card: str | None = None) -> int:
+    def _calculate_rent(self, sq_idx: int, dice_total: int,
+                        via_card: str | None = None, lander: int | None = None) -> int:
         sq = self._sq[sq_idx]
         prop = self.properties[sq_idx]
         owner = prop.owner
@@ -793,7 +794,8 @@ class GameEngine:
             if via_card == "nearest_utility":
                 # Card says: throw dice and pay 10× — use a NEW roll
                 d1, d2 = self.rng.randint(1, 6), self.rng.randint(1, 6)
-                self._log(DiceRolled(player=self.players[0].index, d1=d1, d2=d2))
+                if lander is not None:
+                    self._log(DiceRolled(player=lander, d1=d1, d2=d2))
                 return 10 * (d1 + d2)
             multiplier = 10 if n_owned >= 2 else 4
             return multiplier * dice_total
